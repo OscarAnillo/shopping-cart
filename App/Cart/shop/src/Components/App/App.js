@@ -7,6 +7,8 @@ import {makeStyles} from '@material-ui/core/styles';
 /* gsap */
 import gsap from 'gsap';
 
+/* React router */
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   divBg : {
@@ -40,7 +42,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function App() {
-  const classes = useStyles()
+  const classes = useStyles();
+
+  const history = useHistory();
+
   const bgRef = useRef(null);
   const divTextRef = useRef(null);
 
@@ -48,11 +53,15 @@ function App() {
     gsap.fromTo(bgRef.current,{opacity:0, duration: 2},{opacity:1, duration: 2})
     gsap.fromTo(divTextRef.current, {opacity:0, duration: 2}, {opacity:1, duration: 2})
   },[])
+
+  const clickHandler = () => {
+    history.push('/offers')
+  }
   return (
     <div className={classes.divBg} ref={bgRef}>
       <div className={classes.divText} ref={divTextRef}>
         <Typography className={classes.typographyStyle}>Oscar Anillo</Typography>
-        <Button variant="contained" color="primary">CHECK!</Button>
+        <Button variant="contained" color="primary" onClick={clickHandler}>CHECK!</Button>
       </div>
     </div>
   );
