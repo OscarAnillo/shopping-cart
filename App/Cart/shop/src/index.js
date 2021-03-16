@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Components/App/App';
 
+/* Components */
+import App from './Components/App/App';
+import OffersDeals from './Components/Offers/OffersDeals';
+
+/* React-Router */
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        <Route path="/" component={App} />
+        <Route exact path="/" component={App} />
+        <Route exact path="/offers" component={OffersDeals} />
       </Switch>
     </Router>
   </React.StrictMode>,
