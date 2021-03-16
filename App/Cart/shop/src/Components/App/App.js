@@ -1,6 +1,12 @@
+import {useRef, useEffect} from 'react';
+
+/* Material-ui */
 import {Button, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import './App.css';
+
+/* gsap */
+import gsap from 'gsap';
+
 
 const useStyles = makeStyles(theme => ({
   divBg : {
@@ -35,9 +41,16 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles()
+  const bgRef = useRef(null);
+  const divTextRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(bgRef.current,{opacity:0, duration: 2},{opacity:1, duration: 2})
+    gsap.fromTo(divTextRef.current, {opacity:0, duration: 2}, {opacity:1, duration: 2})
+  },[])
   return (
-    <div className={classes.divBg}>
-      <div className={classes.divText}>
+    <div className={classes.divBg} ref={bgRef}>
+      <div className={classes.divText} ref={divTextRef}>
         <Typography className={classes.typographyStyle}>Oscar Anillo</Typography>
         <Button variant="contained" color="primary">CHECK!</Button>
       </div>
