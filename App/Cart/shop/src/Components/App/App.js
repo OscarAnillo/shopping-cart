@@ -19,11 +19,17 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #fff',
     borderRadius: '5px',
     padding: '2em',
-    width: '70%'
+    width: '70%',
+    [theme.breakpoints.up('sm')] : {
+      maxWidth: '300px'
+    }
   },
   typographyStyle: {
     color: '#fff',
-    fontSize: '2rem'
+    fontSize: '2rem',
+    [theme.breakpoints.up('sm')] : {
+      fontSize: '3rem',
+    }
   }
 }))
 
