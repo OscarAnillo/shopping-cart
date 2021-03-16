@@ -8,6 +8,7 @@ import OffersDeals from './Components/Offers/OffersDeals';
 
 /* React-Router */
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ShoeBrands from './Components/Offers/ShoeBrands';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/offers" component={OffersDeals} />
+        <Route exact path="/offers/shoes" component={ShoeBrands} />
       </Switch>
     </Router>
   </React.StrictMode>,

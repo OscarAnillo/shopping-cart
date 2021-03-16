@@ -14,7 +14,7 @@ import gsap from 'gsap';
 
 const useStyles = makeStyles(theme => ({
     divBg: {
-        height: '100vh',
+        minHeight: '100vh',
         background: 'linear-gradient(to bottom, #858585, #000)',
         
     },
@@ -47,7 +47,7 @@ export default function OffersDeals(){
     
     useEffect(() => {
         gsap.fromTo(typographyRef.current, {duration: 1, scale: 4, ease: 'back'}, {duration: 1,scale: 1, ease: 'back'})
-        gsap.fromTo('.divMap', {y: 200, opacity: 0, duration: 2}, {y: 0, opacity: 1, duration: 2})
+        gsap.fromTo('.divMap', {x: 200, opacity: 0, duration: 1}, {x: 0, opacity: 1, duration: 1})
     }, [])
 
     return(
