@@ -17,6 +17,7 @@ import Puma from './Components/Brands/ShoeBrands/Puma';
 import FragranceBrands from './Components/Offers/FragrancesBrands';
 import JeanPaul from './Components/Brands/FragranceBrands/JeanPaulGaultier';
 import Versace from './Components/Brands/FragranceBrands/Versace';
+import Prada from './Components/Brands/FragranceBrands/Prada';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,6 +34,7 @@ ReactDOM.render(
         <Route path="/offers/fragrances" component={FragranceBrands} />
         <Route path="/jean-paul-gaultier" component={JeanPaul} />
         <Route path="/versace" component={Versace} />
+        <Route path="/prada" component={Prada} />
       </Switch>
     </Router>
   </React.StrictMode>,

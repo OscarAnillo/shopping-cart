@@ -10,7 +10,7 @@ import gsap from 'gsap/gsap-core';
 const useStyles = makeStyles(theme => ({
     divBg: {
         height: '100vh',
-        backgroundImage: 'url(https://aromasyrecuerdos.com/wp-content/uploads/2020/09/versace_eaufraiche.jpeg)',
+        backgroundImage: 'url(https://media.static-allbeauty.com/image/product/1/1600/1174262-prada-lhomme-eau-de-toilette-spray-100ml.jpg)',
         backgroundPosition:'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -39,19 +39,19 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function Versace(){
+export default function Prada(){
     const classes = useStyles();
     const bgRef = useRef(null);
     const sectionRef = useRef(null);
 
     useEffect(() => {
         gsap.fromTo(bgRef.current, {opacity: 0, duration: 2}, {opacity: 1, duration: 2})
-        gsap.from(sectionRef.current, {x: 200, duration: 1})
+        gsap.from(sectionRef.current, {y: -200, duration: 1})
     }, [])
     return(
         <div className={classes.divBg} ref={bgRef}>
             <section className={classes.sectionStyle} ref={sectionRef}>
-                <Typography className={classes.typographyStyle}>Versace</Typography>
+                <Typography className={classes.typographyStyle}>Prada</Typography>
             </section>
         </div>
     )
