@@ -1,7 +1,7 @@
 import {useRef, useEffect} from 'react';
 
 /* Components */
-import fragrancesData from '../Data/FragrancesData';
+import capsData from '../Data/CapsData';
 
 /* Material-ui */
 import {Typography, Card, CardHeader, CardMedia} from '@material-ui/core';
@@ -53,9 +53,9 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function FragranceBrands(){
+export default function CapBrands(){
     const classes = useStyles();
-    const {data} = fragrancesData;
+    const {data} = capsData;
     const typographyRef = useRef(null);
 
     useEffect(() => {

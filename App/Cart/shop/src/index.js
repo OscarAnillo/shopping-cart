@@ -18,6 +18,7 @@ import FragranceBrands from './Components/Offers/FragrancesBrands';
 import JeanPaul from './Components/Brands/FragranceBrands/JeanPaulGaultier';
 import Versace from './Components/Brands/FragranceBrands/Versace';
 import Prada from './Components/Brands/FragranceBrands/Prada';
+import CapBrands from './Components/Offers/CapsBrands';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,16 +26,21 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/offers" component={OffersDeals} />
+
         {/* Shoe routes */}
         <Route exact path="/offers/shoes" component={ShoeBrands} />
         <Route path="/adidas" component={Adidas} />
         <Route path="/nike" component={Nike} />
         <Route path="/puma" component={Puma} />
+
         {/* fragrances routes */}
         <Route path="/offers/fragrances" component={FragranceBrands} />
         <Route path="/jean-paul-gaultier" component={JeanPaul} />
         <Route path="/versace" component={Versace} />
         <Route path="/prada" component={Prada} />
+
+        {/* Cap routes */}
+        <Route path="/offers/caps" component={CapBrands} />
       </Switch>
     </Router>
   </React.StrictMode>,
