@@ -10,6 +10,8 @@ import OffersDeals from './Components/Offers/OffersDeals';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import ShoeBrands from './Components/Offers/ShoeBrands';
 import Adidas from './Components/Brands/ShoeBrands/Adidas';
+import Nike from './Components/Brands/ShoeBrands/Nike';
+import Puma from './Components/Brands/ShoeBrands/Puma';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +21,8 @@ ReactDOM.render(
         <Route exact path="/offers" component={OffersDeals} />
         <Route exact path="/offers/shoes" component={ShoeBrands} />
         <Route path="/adidas" component={Adidas} />
+        <Route path="/nike" component={Nike} />
+        <Route path="/puma" component={Puma} />
       </Switch>
     </Router>
   </React.StrictMode>,

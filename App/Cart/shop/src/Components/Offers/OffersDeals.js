@@ -1,4 +1,5 @@
 import {useRef, useEffect} from 'react';
+import classnames from 'classnames';
 /* Components */
 import offers from '../Data/OffersData';
 
@@ -20,12 +21,29 @@ const useStyles = makeStyles(theme => ({
     },
     divText: {
         textAlign: 'center',
-        padding: '1em 0'
+        padding: '1em 0',
     },
     typographyStyle: {
         fontSize: '3rem',
         color: '#fff',
-        textShadow: '1px 3px 5px #000'
+        textShadow: '1px 3px 5px #000',
+    },
+    section: {
+        [theme.breakpoints.up('lg')] : {
+            width: '70%',
+            margin: 'auto',
+        },
+    },
+    divMap: {
+        [theme.breakpoints.up('sm')] : {
+            width: '80%',
+            margin: 'auto'
+        },
+        [theme.breakpoints.up('md')] : {
+            display: 'inline-block',
+            width: '31.5%',
+            margin: '0 .5em'
+        },
     },
     linkStyle: {
         textDecoration: 'none'
@@ -35,7 +53,13 @@ const useStyles = makeStyles(theme => ({
         margin: '1em 0'
     },
     cardImage: {
-        height: 300
+        height: 300,
+        [theme.breakpoints.up('sm')] : {
+            height: 400
+        },
+        [theme.breakpoints.up('md')] : {
+            height: 550
+        },
     }
 }))
 
@@ -55,9 +79,9 @@ export default function OffersDeals(){
             <div className={classes.divText}>
                 <Typography className={classes.typographyStyle} ref={typographyRef}>DEALS!</Typography>
             </div>
-            <section>
+            <section className={classes.section}>
                 {data.map(x => (
-                    <div key={x.id} ref={divRef} className="divMap">
+                    <div key={x.id} ref={divRef} className={classnames(classes.divMap, 'divMap')}>
                         <Link to={`/offers/${x.name}`} className={classes.linkStyle}>
                             <Card className={classes.cardStyle}>
                                 <CardHeader title={x.name}/>

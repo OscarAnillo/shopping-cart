@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
         background: 'rgba(255, 255, 255, 0.4)'
     },
     typographyStyle: {
-        fontSize: '3rem'
+        fontSize: '2.5rem'
     }
 }))
 
@@ -45,7 +45,7 @@ export default function Adidas(){
     return(
         <div className={classes.divBg} ref={bgRef}>
             <section className={classes.sectionStyle} ref={sectionRef}>
-                <Typography className={classes.typographyStyle} >ADIDAS</Typography>
+                <Typography className={classes.typographyStyle}>ADIDAS</Typography>
             </section>
         </div>
     )
