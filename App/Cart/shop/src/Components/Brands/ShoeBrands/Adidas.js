@@ -1,7 +1,8 @@
 import {useRef, useEffect} from 'react';
 
 /* Material-ui */
-import {Typography} from '@material-ui/core';
+import {AppBar, Tab, Toolbar, IconButton, Badge, Typography, Tabs} from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {makeStyles} from '@material-ui/core/styles';
 
 /* Gsap */
@@ -16,36 +17,40 @@ const useStyles = makeStyles(theme => ({
         backgroundRepeat: 'no-repeat',
         textAlign: 'center'
     }, 
-    sectionStyle: {
-        border: '1px  solid #111',
-        borderRadius: '5px',
-        width: '50%',
-        margin: 'auto',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        padding: '1em 0',
-        background: 'rgba(255, 255, 255, 0.4)'
+    appBarStyle: {
+        display: 'flex',
+        justifyContent: 'center',
+        [theme.breakpoints.up('sm')] : {
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+        },
+        
     },
-    typographyStyle: {
-        fontSize: '2.5rem'
-    }
+    
 }))
 
 export default function Adidas(){
     const classes = useStyles();
     const bgRef = useRef(null);
-    const sectionRef = useRef(null);
+    
 
     useEffect(() => {
         gsap.fromTo(bgRef.current, {opacity: 0, duration: 2}, {opacity: 1, duration: 2})
-        gsap.from(sectionRef.current, {x: -200, duration: 1})
     }, [])
     return(
         <div className={classes.divBg} ref={bgRef}>
-            <section className={classes.sectionStyle} ref={sectionRef}>
-                <Typography className={classes.typographyStyle}>ADIDAS</Typography>
+            <section >
+                <AppBar position="static">
+                    <Toolbar className={classes.appBarStyle}>
+                        <Tabs>
+                            <Tab label="models"/>
+                            <Tab label="prices"/>
+                        </Tabs>
+                        <div>
+                        <Badge><ShoppingCartIcon /></Badge>
+                        </div>
+                    </Toolbar>
+                </AppBar>
             </section>
         </div>
     )
