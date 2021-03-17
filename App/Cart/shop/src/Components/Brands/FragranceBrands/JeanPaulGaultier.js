@@ -14,7 +14,10 @@ const useStyles = makeStyles(theme => ({
         backgroundPosition:'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.up('md')] : {
+            backgroundPosition:'top',
+        }
     }, 
     sectionStyle: {
         border: '1px  solid #111',
@@ -26,7 +29,10 @@ const useStyles = makeStyles(theme => ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         padding: '1em 0',
-        background: 'rgba(255, 255, 255, 0.4)'
+        background: 'rgba(255, 255, 255, 0.4)',
+        [theme.breakpoints.up('md')] : {
+            maxWidth: '500px',
+        }
     },
     typographyStyle: {
         fontSize: '2.5rem'
