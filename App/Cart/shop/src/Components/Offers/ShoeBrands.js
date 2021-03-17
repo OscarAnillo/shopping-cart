@@ -21,6 +21,18 @@ const useStyles = makeStyles(theme => ({
         color: '#fff',
         fontSize: '2.5rem'
     },
+    divMap: {
+        width: '100%',
+        [theme.breakpoints.up('sm')] : {
+            width: '80%',
+            margin: 'auto'
+        },
+        [theme.breakpoints.up('md')] : {
+            display: 'inline-block',
+            width: '29%',
+            margin: '0 .5em'
+        }
+    },
     linkStyle: {
         textDecoration: 'none'
     },
@@ -31,7 +43,13 @@ const useStyles = makeStyles(theme => ({
         color: '#fff'
     },
     CardImage: {
-        height: 200
+        height: 200,
+        [theme.breakpoints.up('sm')] : {
+            height: 320,
+        },
+        [theme.breakpoints.up('md')] : {
+            height: 550,
+        }
     }
 }))
 
@@ -49,7 +67,7 @@ export default function ShoeBrands(){
             <Typography className={classes.typographyStyle} ref={typographyRef}>Our Brands</Typography>
             <div>
                 {data.map(x => (
-                    <div>
+                    <div className={classes.divMap}>
                         <Link to={`/${x.name}`} className={classes.linkStyle}>
                             <Card className={classes.cardStyle}>
                                 <CardHeader title={x.name}/>
