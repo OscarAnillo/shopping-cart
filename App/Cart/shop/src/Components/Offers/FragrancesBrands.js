@@ -67,7 +67,7 @@ export default function FragranceBrands(){
             <Typography className={classes.typographyStyle} ref={typographyRef}>Our Brands</Typography>
             <div>
                 {data.map(x => (
-                    <div className={classes.divMap}>
+                    <div className={classes.divMap} key={x.id}>
                         <Link to={`/${x.name}`} className={classes.linkStyle}>
                             <Card className={classes.cardStyle}>
                                 <CardHeader title={x.name}/>
