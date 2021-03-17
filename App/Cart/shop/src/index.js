@@ -20,6 +20,7 @@ import Versace from './Components/Brands/FragranceBrands/Versace';
 import Prada from './Components/Brands/FragranceBrands/Prada';
 import CapBrands from './Components/Offers/CapsBrands';
 import Monster from './Components/Brands/CapBrands/Monster'
+import RedBull from './Components/Brands/CapBrands/RedBull';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -43,6 +44,7 @@ ReactDOM.render(
         {/* Cap routes */}
         <Route path="/offers/caps" component={CapBrands} />
         <Route path="/monster" component={Monster} />
+        <Route path="/red-bull" component={RedBull} />
       </Switch>
     </Router>
   </React.StrictMode>,
