@@ -1,7 +1,7 @@
 import {useRef, useEffect} from 'react';
 
 /* Material-ui */
-import {AppBar, Tab, Toolbar, IconButton, Badge, Typography, Tabs, Card, CardHeader, CardMedia} from '@material-ui/core';
+import {AppBar, Tab, Toolbar, Badge, Typography, Tabs, Card, CardHeader, CardMedia} from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -83,7 +83,7 @@ export default function Adidas(props){
                 <div>
                     {product.map(x => (
                         <div className={classes.divMap}>
-                            <Card className={classes.cardStyle}>
+                            <Card className={classes.cardStyle} key={x.id}>
                                 <CardHeader title={x.name} subheader={`${x.discount} off`}/>
                                 <CardMedia image={x.image} className={classes.cardImage}/>
                             </Card>
