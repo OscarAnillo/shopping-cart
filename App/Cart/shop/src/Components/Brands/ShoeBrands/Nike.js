@@ -10,6 +10,7 @@ import nikeModels from '../../Models/ShoeBrandModels/NikeModels'
 
 /* Gsap */
 import gsap from 'gsap/gsap-core';
+import Cart from '../../Cart';
 
 const useStyles = makeStyles(theme => ({
     divBg: {
@@ -83,6 +84,19 @@ export default function Adidas(props){
         }
       };
 
+      const onRemove = (product) => {
+        const exist = cartItems.find((x) => x.id === product.id);
+        if (exist.qty === 1) {
+          setCartItems(cartItems.filter((x) => x.id !== product.id));
+        } else {
+          setCartItems(
+            cartItems.map((x) =>
+              x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+            )
+          );
+        }
+      };
+
     return(
         <div className={classes.divBg} ref={bgRef}>
             <section >
@@ -116,6 +130,9 @@ export default function Adidas(props){
                     ))}
                 </div>
             </div>
+            <section>
+                <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>
+            </section>
         </div>
     )
 }

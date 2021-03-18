@@ -7,9 +7,11 @@ import {makeStyles} from '@material-ui/core/styles';
 
 /* component */
 import adidasModels from '../../Models/ShoeBrandModels/AdidasModels'
+import Cart from '../../Cart';
 
 /* Gsap */
 import gsap from 'gsap/gsap-core';
+
 
 const useStyles = makeStyles(theme => ({
     divBg: {
@@ -51,6 +53,9 @@ const useStyles = makeStyles(theme => ({
     }, 
     cardButton: {
         margin: '.5em'
+    },
+    sectionCart: {
+        minHeight: '100vh',
     }
     
 }))
@@ -76,6 +81,19 @@ export default function Adidas(props){
           );
         } else {
           setCartItems([...cartItems, { ...product, qty: 1 }]);
+        }
+      };
+    
+      const onRemove = (product) => {
+        const exist = cartItems.find((x) => x.id === product.id);
+        if (exist.qty === 1) {
+          setCartItems(cartItems.filter((x) => x.id !== product.id));
+        } else {
+          setCartItems(
+            cartItems.map((x) =>
+              x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+            )
+          );
         }
       };
 
@@ -111,6 +129,9 @@ export default function Adidas(props){
                     ))}
                 </div>
             </div>
+            <section className={classes.sectionCart}>
+                <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>
+            </section>
         </div>
     )
 }
