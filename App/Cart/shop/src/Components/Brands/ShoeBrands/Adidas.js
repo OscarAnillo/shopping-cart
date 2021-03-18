@@ -84,7 +84,7 @@ export default function Adidas(props){
                     {product.map(x => (
                         <div className={classes.divMap}>
                             <Card className={classes.cardStyle}>
-                                <CardHeader title={x.name} subheader={x.discount}/>
+                                <CardHeader title={x.name} subheader={`${x.discount} off`}/>
                                 <CardMedia image={x.image} className={classes.cardImage}/>
                             </Card>
                         </div>
