@@ -1,7 +1,7 @@
-import {useRef, useEffect} from 'react';
+import {useState,useRef, useEffect} from 'react';
 
 /* Material-ui */
-import {AppBar, Tab, Toolbar, Badge, Typography, Tabs, Card, CardHeader, CardMedia} from '@material-ui/core';
+import {AppBar, Tab, Toolbar, Badge, Typography, Tabs, Card, CardHeader, CardMedia, Button} from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -51,18 +51,37 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')] : {
             height: 330
         }
+    },
+    cardButton: {
+        margin: '.5em'
     }
+    
     
 }))
 
 export default function Adidas(props){
     const classes = useStyles();
     const {product} = nikeModels;
+    const [cartItems, setCartItems] = useState([]);
     const bgRef = useRef(null);
+    const countCartItems = cartItems.length;
     
     useEffect(() => {
         gsap.fromTo(bgRef.current, {opacity: 0, duration: 2}, {opacity: 1, duration: 2})
     }, [])
+
+    const onAdd = (product) => {
+        const exist = cartItems.find((x) => x.id === product.id);
+        if (exist) {
+          setCartItems(
+            cartItems.map((x) =>
+              x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+            )
+          );
+        } else {
+          setCartItems([...cartItems, { ...product, qty: 1 }]);
+        }
+      };
 
     return(
         <div className={classes.divBg} ref={bgRef}>
@@ -74,7 +93,11 @@ export default function Adidas(props){
                             <Tab label="prices"/>
                         </Tabs>
                         <div>
-                            <Badge color="secondary"><ShoppingCartIcon /></Badge>
+                        <div>
+                            {countCartItems.length !== 0 &&  (<ShoppingCartIcon />)}
+                            {countCartItems ? (<Badge color="secondary" badgeContent={countCartItems}></Badge>) : ("")}
+                                
+                        </div>
                         </div>
                     </Toolbar>
                 </AppBar>
@@ -87,6 +110,7 @@ export default function Adidas(props){
                             <Card className={classes.cardStyle}>
                                 <CardHeader title={x.name} subheader={`${x.discount} off`}/>
                                 <CardMedia image={x.image} className={classes.cardImage}/>
+                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={onAdd}>Add to </Button>
                             </Card>
                         </div>
                     ))}
