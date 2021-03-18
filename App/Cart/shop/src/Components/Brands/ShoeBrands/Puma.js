@@ -1,8 +1,12 @@
 import {useRef, useEffect} from 'react';
 
 /* Material-ui */
-import {Typography} from '@material-ui/core';
+import {AppBar, Tab, Toolbar, IconButton, Badge, Typography, Tabs, Card, CardHeader, CardMedia} from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {makeStyles} from '@material-ui/core/styles';
+
+/* component */
+import pumaModels from '../../Models/ShoeBrandModels/PumaModels'
 
 /* Gsap */
 import gsap from 'gsap/gsap-core';
@@ -16,37 +20,77 @@ const useStyles = makeStyles(theme => ({
         backgroundRepeat: 'no-repeat',
         textAlign: 'center'
     }, 
-    sectionStyle: {
-        border: '1px  solid #111',
-        borderRadius: '5px',
-        width: '50%',
-        margin: 'auto',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        padding: '1em 0',
-        background: 'rgba(255, 255, 255, 0.4)'
+    appBarStyle: {
+        display: 'flex',
+        justifyContent: 'center',
+        [theme.breakpoints.up('sm')] : {
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+        },
+        
     },
     typographyStyle: {
-        fontSize: '3rem',
+        fontSize: '2.5rem'
+    },
+    divMap: {
+        border: '1px solid #eee',
+        width: '100%',
+        [theme.breakpoints.up('md')] : {
+            display: 'inline-block',
+            width: '30%'
+        }
+
+    },
+    cardStyle: {
+        margin: '1em'
+
+    },
+    cardImage: {
+        height: 230,
+        [theme.breakpoints.up('sm')] : {
+            height: 300
+        }
     }
+    
 }))
 
-export default function Puma(){
+export default function Adidas(props){
     const classes = useStyles();
+    const {product} = pumaModels;
     const bgRef = useRef(null);
-    const sectionRef = useRef(null);
-
+    
     useEffect(() => {
         gsap.fromTo(bgRef.current, {opacity: 0, duration: 2}, {opacity: 1, duration: 2})
-        gsap.from(sectionRef.current, {y: 400, duration: 1})
     }, [])
+
     return(
         <div className={classes.divBg} ref={bgRef}>
-            <section className={classes.sectionStyle} ref={sectionRef}>
-                <Typography className={classes.typographyStyle}>PUMA</Typography>
+            <section >
+                <AppBar position="static">
+                    <Toolbar className={classes.appBarStyle}>
+                        <Tabs>
+                            <Tab label="models"/>
+                            <Tab label="prices"/>
+                        </Tabs>
+                        <div>
+                            <Badge color="secondary"><ShoppingCartIcon /></Badge>
+                        </div>
+                    </Toolbar>
+                </AppBar>
             </section>
+            <div>
+                <Typography className={classes.typographyStyle  }>Our Models</Typography>
+                <div>
+                    {product.map(x => (
+                        <div className={classes.divMap}>
+                            <Card className={classes.cardStyle}>
+                                <CardHeader title={x.name} subheader={`${x.discount} off`}/>
+                                <CardMedia image={x.image} className={classes.cardImage}/>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
