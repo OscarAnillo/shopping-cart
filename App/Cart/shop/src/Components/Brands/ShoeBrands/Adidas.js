@@ -35,6 +35,10 @@ const useStyles = makeStyles(theme => ({
     divMap: {
         border: '1px solid #eee',
         width: '100%',
+        [theme.breakpoints.up('md')] : {
+            display: 'inline-block',
+            width: '30%'
+        }
 
     },
     cardStyle: {
