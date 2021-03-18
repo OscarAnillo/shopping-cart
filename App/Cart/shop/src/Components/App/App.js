@@ -57,6 +57,7 @@ function App() {
   const clickHandler = () => {
     history.push('/offers')
   }
+  
   return (
     <div className={classes.divBg} ref={bgRef}>
       <div className={classes.divText} ref={divTextRef}>
