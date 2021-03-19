@@ -10,7 +10,7 @@ import adidasModels from '../../Models/ShoeBrandModels/AdidasModels'
 import Cart from '../../Cart';
 
 /* Gsap */
-import gsap from 'gsap/gsap-core';
+import gsap from 'gsap';
 
 
 const useStyles = makeStyles(theme => ({
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Adidas(props){
     const classes = useStyles();
-    const {product} = adidasModels;
+    const {products} = adidasModels;
     const [cartItems, setCartItems] = useState([]);
     const bgRef = useRef(null);
     const countCartItems = cartItems.length;
@@ -76,7 +76,7 @@ export default function Adidas(props){
         if (exist) {
           setCartItems(
             cartItems.map((x) =>
-              x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+              x.id === product.id ? {...exist, qty: exist.qty + 1 } : x
             )
           );
         } else {
@@ -109,21 +109,20 @@ export default function Adidas(props){
                         <div>
                             {countCartItems.length !== 0 &&  (<ShoppingCartIcon />)}
                             {countCartItems ? (<Badge color="secondary" badgeContent={countCartItems}></Badge>) : ("")}
-                                
                         </div>
                     </Toolbar>
                 </AppBar>
                 
             </section>
             <div>
-                <Typography className={classes.typographyStyle  }>Our Models</Typography>
+                <Typography className={classes.typographyStyle}>Our Models</Typography>
                 <div>
-                    {product.map(x => (
-                        <div className={classes.divMap} key={x.id}>
+                    {products.map(product => (
+                        <div className={classes.divMap} key={product.id}>
                             <Card className={classes.cardStyle}>
-                                <CardHeader title={x.name} subheader={`${x.discount} off`}/>
-                                <CardMedia image={x.image} className={classes.cardImage}/>
-                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={onAdd}>Add to </Button>
+                                <CardHeader title={product.name} subheader={`${product.discount} off`}/>
+                                <CardMedia image={product.image} className={classes.cardImage}/>
+                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={()=>onAdd(product)}>Add to </Button>
                             </Card>
                         </div>
                     ))}

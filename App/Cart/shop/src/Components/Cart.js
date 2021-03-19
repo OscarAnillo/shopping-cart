@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     },
     divText: {
         border: '1px solid #eee',
-        width: '70%',
+        width: '90%',
         margin: '1em auto'
     },
     typographyTitle: {
@@ -15,7 +15,41 @@ const useStyles = makeStyles(theme => ({
     },
     typographySubtitle: {
         fontSize: '1.3rem'
+    }, 
+    sectionStyle: {
+        display: 'inline-block',
+        width: '90%',
+    },
+    divMap: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    cardStyle: {
+        paddingBottom: '1em',
+        margin: '.5em 0',
+        [theme.breakpoints.up('md')] : {
+            width: 400
+        }
+    },
+    cardImage: {
+        height: 100,
+        [theme.breakpoints.up('md')] : {
+            height: 300,
+            width: 400
+        }
+    },
+    divQty: {
+        border: '1px solid #bbb',
+        padding: '1em'
+    },
+    divQtyText: {
+        fontSize: '1.3rem',
+        [theme.breakpoints.up('md')] : {
+            fontSize: '2rem'
+        }
     }
+
 }))
 
 export default function Cart(props){
@@ -27,20 +61,24 @@ export default function Cart(props){
             <div className={classes.divText}>
                 <Typography className={classes.typographyTitle}>Take'em with you!</Typography>
                 {cartItems.length === 0 && (<Typography>Your cart is empty</Typography>)}
+                <section className={classes.sectionStyle}>
+                    {cartItems.map((item) => (
+                        <div className={classes.divMap} key={item.id}>
+                            <Card className={classes.cardStyle}>
+                                <CardMedia image={item.image} className={classes.cardImage}></CardMedia>
+                                <CardHeader title={item.name} subheader={item.discount}></CardHeader>
+                                <Button variant="contained" color="primary" onClick={() => onAdd(item)}>+</Button>
+                                <Button variant="outlined" color="secondary" onClick={() => onRemove(item)}>-</Button>
+                            </Card>
+                            <div className={classes.divQty}>
+                                <Typography className={classes.divQtyText}>{item.qty}</Typography>
+                            </div>
+                        </div>    
+                    ))}
+                    
+                </section>
             </div>
-            <section>
-                {cartItems.map((item) => (
-                    <div>
-                        <Card style={{width: 150}}>
-                            <CardMedia image={item.image} style={{height:'150px', border:'1px solid red'}}></CardMedia>
-                            <CardHeader title={item.name} subheader={item.discount} style={{border:'1px solid blue'}}></CardHeader>
-                            <Button variant="contained" color="primary" onClick={onAdd}>+</Button>
-                            <Button variant="outlined" color="secondary" onClick={onRemove}>-</Button>
-                        </Card>
-                    </div>
-                ))}
-                
-            </section>
+            
         </div>
     )
 }

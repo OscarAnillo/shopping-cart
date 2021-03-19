@@ -117,14 +117,14 @@ export default function Adidas(props){
                 </AppBar>
             </section>
             <div>
-                <Typography className={classes.typographyStyle  }>Our Models</Typography>
+                <Typography className={classes.typographyStyle}>Our Models</Typography>
                 <div>
-                    {product.map(x => (
-                        <div className={classes.divMap} key={x.id}>
+                    {product.map(product => (
+                        <div className={classes.divMap} key={product.id}>
                             <Card className={classes.cardStyle}>
-                                <CardHeader title={x.name} subheader={`${x.discount} off`}/>
-                                <CardMedia image={x.image} className={classes.cardImage}/>
-                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={onAdd}>Add to </Button>
+                                <CardHeader title={product.name} subheader={`${product.discount} off`}/>
+                                <CardMedia image={product.image} className={classes.cardImage}/>
+                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={() =>onAdd(product)}>Add to </Button>
                             </Card>
                         </div>
                     ))}
