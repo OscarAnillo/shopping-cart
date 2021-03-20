@@ -7,10 +7,11 @@ import {makeStyles} from '@material-ui/core/styles';
 
 /* component */
 import nikeModels from '../../Models/ShoeBrandModels/NikeModels'
+import Cart from '../../Cart';
 
 /* Gsap */
 import gsap from 'gsap/gsap-core';
-import Cart from '../../Cart';
+
 
 const useStyles = makeStyles(theme => ({
     divBg: {

@@ -7,9 +7,11 @@ import {makeStyles} from '@material-ui/core/styles';
 
 /* component */
 import pumaModels from '../../Models/ShoeBrandModels/PumaModels'
+import Cart from '../../Cart';
 
 /* Gsap */
 import gsap from 'gsap/gsap-core';
+
 
 const useStyles = makeStyles(theme => ({
     divBg: {
@@ -81,6 +83,19 @@ export default function Adidas(props){
         }
       };
 
+      const onRemove = (product) => {
+        const exist = cartItems.find((x) => x.id === product.id);
+        if (exist.qty === 1) {
+          setCartItems(cartItems.filter((x) => x.id !== product.id));
+        } else {
+          setCartItems(
+            cartItems.map((x) =>
+              x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+            )
+          );
+        }
+      };
+
     return(
         <div className={classes.divBg} ref={bgRef}>
             <section >
@@ -103,17 +118,20 @@ export default function Adidas(props){
             <div>
                 <Typography className={classes.typographyStyle  }>Our Models</Typography>
                 <div>
-                    {product.map(x => (
+                    {product.map(product => (
                         <div className={classes.divMap}>
-                            <Card className={classes.cardStyle} key={x.id}>
-                                <CardHeader title={x.name} subheader={`${x.discount} off`}/>
-                                <CardMedia image={x.image} className={classes.cardImage}/>
-                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={onAdd}>Add to </Button>
+                            <Card className={classes.cardStyle} key={product.id}>
+                                <CardHeader title={product.name} subheader={`${product.discount} off`}/>
+                                <CardMedia image={product.image} className={classes.cardImage}/>
+                                <Button variant="contained" color="primary" endIcon={<ShoppingCartIcon />} className={classes.cardButton} onClick={() => onAdd(product)}>Add to </Button>
                             </Card>
                         </div>
                     ))}
                 </div>
             </div>
+            <section>
+                <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>
+            </section>
         </div>
     )
 }
